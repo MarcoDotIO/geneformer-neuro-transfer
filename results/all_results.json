@@ -1,0 +1,904 @@
+{
+  "ad_finetune": {
+    "test_metrics": {
+      "accuracy": 0.9893,
+      "f1": 0.9894,
+      "precision": 0.981,
+      "recall": 0.998,
+      "auroc": 0.9957
+    },
+    "training_epochs": 5,
+    "training_time_s": 6206
+  },
+  "pd_transfer": {
+    "zero_shot": {
+      "accuracy": 0.499,
+      "f1": 0.036,
+      "auroc": 0.439
+    },
+    "few_shot_10pct": {
+      "accuracy": 0.905,
+      "f1": 0.912,
+      "precision": 0.851,
+      "recall": 0.983,
+      "auroc": 0.952
+    },
+    "few_shot_25pct": {
+      "accuracy": 0.946,
+      "f1": 0.947,
+      "precision": 0.921,
+      "recall": 0.975,
+      "auroc": 0.981
+    },
+    "few_shot_50pct": {
+      "accuracy": 0.957,
+      "f1": 0.958,
+      "precision": 0.934,
+      "recall": 0.984,
+      "auroc": 0.988
+    },
+    "few_shot_100pct": {
+      "accuracy": 0.97,
+      "f1": 0.97,
+      "precision": 0.96,
+      "recall": 0.981,
+      "auroc": 0.992
+    },
+    "from_scratch": {
+      "accuracy": 0.976,
+      "f1": 0.976,
+      "precision": 0.968,
+      "recall": 0.984,
+      "auroc": 0.994
+    }
+  },
+  "als_transfer": {
+    "zero_shot": {
+      "accuracy": 0.494,
+      "f1": 0.016,
+      "auroc": 0.416
+    },
+    "few_shot_10pct": {
+      "accuracy": 0.879,
+      "f1": 0.887,
+      "precision": 0.828,
+      "recall": 0.956,
+      "auroc": 0.933
+    },
+    "few_shot_25pct": {
+      "accuracy": 0.912,
+      "f1": 0.914,
+      "precision": 0.89,
+      "recall": 0.939,
+      "auroc": 0.979
+    },
+    "few_shot_50pct": {
+      "accuracy": 0.941,
+      "f1": 0.942,
+      "precision": 0.922,
+      "recall": 0.963,
+      "auroc": 0.99
+    },
+    "few_shot_100pct": {
+      "accuracy": 0.962,
+      "f1": 0.962,
+      "precision": 0.947,
+      "recall": 0.978,
+      "auroc": 0.995
+    },
+    "from_scratch": {
+      "accuracy": 0.971,
+      "f1": 0.971,
+      "precision": 0.966,
+      "recall": 0.977,
+      "auroc": 0.996
+    }
+  },
+  "baselines": {
+    "ad": {
+      "logistic_regression": {
+        "f1": 0.989,
+        "auroc": 0.994
+      },
+      "xgboost": {
+        "f1": 0.989,
+        "auroc": 0.996
+      },
+      "mlp": {
+        "f1": 0.989,
+        "auroc": 0.994
+      }
+    },
+    "pd": {
+      "logistic_regression": {
+        "f1": 0.961,
+        "auroc": 0.988
+      },
+      "xgboost": {
+        "f1": 0.948,
+        "auroc": 0.986
+      },
+      "mlp": {
+        "f1": 0.957,
+        "auroc": 0.988
+      }
+    },
+    "als": {
+      "logistic_regression": {
+        "f1": 0.931,
+        "auroc": 0.981
+      },
+      "xgboost": {
+        "f1": 0.927,
+        "auroc": 0.98
+      },
+      "mlp": {
+        "f1": 0.939,
+        "auroc": 0.984
+      }
+    }
+  },
+  "attention_analysis": {
+    "AD": [
+      {
+        "gene": "RASGEF1B",
+        "ensembl_id": "ENSG00000138670",
+        "attention": 0.0043546258789012955
+      },
+      {
+        "gene": "LINGO1",
+        "ensembl_id": "ENSG00000169783",
+        "attention": 0.00430433928763582
+      },
+      {
+        "gene": "INO80D",
+        "ensembl_id": "ENSG00000114933",
+        "attention": 0.003841557373347615
+      },
+      {
+        "gene": "DHFR",
+        "ensembl_id": "ENSG00000228716",
+        "attention": 0.0035297339606142147
+      },
+      {
+        "gene": "SLC27A6",
+        "ensembl_id": "ENSG00000113396",
+        "attention": 0.0033949664019870553
+      },
+      {
+        "gene": "LHFPL3",
+        "ensembl_id": "ENSG00000187416",
+        "attention": 0.003207471912585037
+      },
+      {
+        "gene": "ADGRV1",
+        "ensembl_id": "ENSG00000164199",
+        "attention": 0.003132024911192662
+      },
+      {
+        "gene": "SLC26A3",
+        "ensembl_id": "ENSG00000091138",
+        "attention": 0.0030869586753948224
+      },
+      {
+        "gene": "RORA",
+        "ensembl_id": "ENSG00000069667",
+        "attention": 0.0030626430074466174
+      },
+      {
+        "gene": "SLIT2",
+        "ensembl_id": "ENSG00000145147",
+        "attention": 0.003040391893591732
+      },
+      {
+        "gene": "SNCG",
+        "ensembl_id": "ENSG00000173267",
+        "attention": 0.002887525474017655
+      },
+      {
+        "gene": "PCP4",
+        "ensembl_id": "ENSG00000183036",
+        "attention": 0.0028792734404927806
+      },
+      {
+        "gene": "SPP1",
+        "ensembl_id": "ENSG00000118785",
+        "attention": 0.0028755566294668086
+      },
+      {
+        "gene": "PTPRZ1",
+        "ensembl_id": "ENSG00000106278",
+        "attention": 0.0028526479678260067
+      },
+      {
+        "gene": "APOE",
+        "ensembl_id": "ENSG00000130203",
+        "attention": 0.0028243494387126004
+      },
+      {
+        "gene": "ROBO2",
+        "ensembl_id": "ENSG00000185008",
+        "attention": 0.002812456645187922
+      },
+      {
+        "gene": "FTL",
+        "ensembl_id": "ENSG00000087086",
+        "attention": 0.002766065051241085
+      },
+      {
+        "gene": "NRGN",
+        "ensembl_id": "ENSG00000154146",
+        "attention": 0.002752663112672356
+      },
+      {
+        "gene": "SLC1A2",
+        "ensembl_id": "ENSG00000110436",
+        "attention": 0.002729211966467674
+      },
+      {
+        "gene": "ZNF385D",
+        "ensembl_id": "ENSG00000151789",
+        "attention": 0.0027266557074405932
+      },
+      {
+        "gene": "RYR3",
+        "ensembl_id": "ENSG00000198838",
+        "attention": 0.002707748798107227
+      },
+      {
+        "gene": "ESR1",
+        "ensembl_id": "ENSG00000091831",
+        "attention": 0.0026699194303629074
+      },
+      {
+        "gene": "EEF1A1",
+        "ensembl_id": "ENSG00000156508",
+        "attention": 0.002655841474389208
+      },
+      {
+        "gene": "HSP90AA1",
+        "ensembl_id": "ENSG00000080824",
+        "attention": 0.002641279161240176
+      },
+      {
+        "gene": "ABTB3",
+        "ensembl_id": "ENSG00000151136",
+        "attention": 0.0026138740389509813
+      },
+      {
+        "gene": "BCOR",
+        "ensembl_id": "ENSG00000183337",
+        "attention": 0.0025976518829908183
+      },
+      {
+        "gene": "LUZP2",
+        "ensembl_id": "ENSG00000187398",
+        "attention": 0.002596176735688607
+      },
+      {
+        "gene": "SYNPR",
+        "ensembl_id": "ENSG00000163630",
+        "attention": 0.00258383786630085
+      },
+      {
+        "gene": "RFX4",
+        "ensembl_id": "ENSG00000111783",
+        "attention": 0.0025794750021304936
+      },
+      {
+        "gene": "ANK1",
+        "ensembl_id": "ENSG00000029534",
+        "attention": 0.0025779409479582682
+      },
+      {
+        "gene": "GPC5",
+        "ensembl_id": "ENSG00000179399",
+        "attention": 0.0025500373706260388
+      },
+      {
+        "gene": "C8orf34",
+        "ensembl_id": "ENSG00000165084",
+        "attention": 0.0025439436140004545
+      },
+      {
+        "gene": "CSPG4",
+        "ensembl_id": "ENSG00000173546",
+        "attention": 0.002540563780348748
+      },
+      {
+        "gene": "TMSB4X",
+        "ensembl_id": "ENSG00000205542",
+        "attention": 0.0025078245282167165
+      },
+      {
+        "gene": "MEGF11",
+        "ensembl_id": "ENSG00000157890",
+        "attention": 0.002498895800993617
+      },
+      {
+        "gene": "PALD1",
+        "ensembl_id": "ENSG00000107719",
+        "attention": 0.0024965855134826786
+      },
+      {
+        "gene": "STK32A",
+        "ensembl_id": "ENSG00000169302",
+        "attention": 0.0024945902870967982
+      },
+      {
+        "gene": "ASIC2",
+        "ensembl_id": "ENSG00000108684",
+        "attention": 0.002485686773210406
+      },
+      {
+        "gene": "RELN",
+        "ensembl_id": "ENSG00000189056",
+        "attention": 0.0024744163766674894
+      },
+      {
+        "gene": "CST3",
+        "ensembl_id": "ENSG00000101439",
+        "attention": 0.002464133789640312
+      },
+      {
+        "gene": "PCDH15",
+        "ensembl_id": "ENSG00000150275",
+        "attention": 0.0024588052893523126
+      },
+      {
+        "gene": "NPC2",
+        "ensembl_id": "ENSG00000119655",
+        "attention": 0.0024519134786957666
+      },
+      {
+        "gene": "ADAMTSL1",
+        "ensembl_id": "ENSG00000178031",
+        "attention": 0.0024483424713253044
+      },
+      {
+        "gene": "NPAS3",
+        "ensembl_id": "ENSG00000151322",
+        "attention": 0.0024420359893213514
+      },
+      {
+        "gene": "KCNIP4",
+        "ensembl_id": "ENSG00000185774",
+        "attention": 0.002437821498419019
+      },
+      {
+        "gene": "RHOJ",
+        "ensembl_id": "ENSG00000126785",
+        "attention": 0.0024348198843654246
+      },
+      {
+        "gene": "ERBB4",
+        "ensembl_id": "ENSG00000178568",
+        "attention": 0.0024320010110856064
+      },
+      {
+        "gene": "FTH1",
+        "ensembl_id": "ENSG00000167996",
+        "attention": 0.002430255742840512
+      },
+      {
+        "gene": "SLC4A4",
+        "ensembl_id": "ENSG00000080493",
+        "attention": 0.0024300419479712015
+      },
+      {
+        "gene": "EMX2",
+        "ensembl_id": "ENSG00000170370",
+        "attention": 0.002417736251740471
+      }
+    ],
+    "PD": [
+      {
+        "gene": "NRN1L",
+        "ensembl_id": "ENSG00000188038",
+        "attention": 0.004918021490863923
+      },
+      {
+        "gene": "TMEM171",
+        "ensembl_id": "ENSG00000157111",
+        "attention": 0.004867923428089573
+      },
+      {
+        "gene": "MEDAG",
+        "ensembl_id": "ENSG00000102802",
+        "attention": 0.004681016448885202
+      },
+      {
+        "gene": "SHISA2",
+        "ensembl_id": "ENSG00000180730",
+        "attention": 0.004085800641526778
+      },
+      {
+        "gene": "SEPTIN12",
+        "ensembl_id": "ENSG00000140623",
+        "attention": 0.003920775805734313
+      },
+      {
+        "gene": "RGS21",
+        "ensembl_id": "ENSG00000253148",
+        "attention": 0.003811495106977721
+      },
+      {
+        "gene": "XDH",
+        "ensembl_id": "ENSG00000158125",
+        "attention": 0.0037742889087115017
+      },
+      {
+        "gene": "MAGEE2",
+        "ensembl_id": "ENSG00000186675",
+        "attention": 0.0037190235826014746
+      },
+      {
+        "gene": "SMTNL2",
+        "ensembl_id": "ENSG00000188176",
+        "attention": 0.0036612835247069597
+      },
+      {
+        "gene": "DHFR",
+        "ensembl_id": "ENSG00000228716",
+        "attention": 0.0033660638593853666
+      },
+      {
+        "gene": "LRIT1",
+        "ensembl_id": "ENSG00000148602",
+        "attention": 0.003350136433973124
+      },
+      {
+        "gene": "VRTN",
+        "ensembl_id": "ENSG00000133980",
+        "attention": 0.003274983278242871
+      },
+      {
+        "gene": "LCT",
+        "ensembl_id": "ENSG00000115850",
+        "attention": 0.003171672612162573
+      },
+      {
+        "gene": "PTH2",
+        "ensembl_id": "ENSG00000142538",
+        "attention": 0.0031141010336936093
+      },
+      {
+        "gene": "KCNH6",
+        "ensembl_id": "ENSG00000173826",
+        "attention": 0.0030388547035319537
+      },
+      {
+        "gene": "TEKT1",
+        "ensembl_id": "ENSG00000167858",
+        "attention": 0.002946096963714808
+      },
+      {
+        "gene": "MYPN",
+        "ensembl_id": "ENSG00000138347",
+        "attention": 0.002918000721062223
+      },
+      {
+        "gene": "TMEM61",
+        "ensembl_id": "ENSG00000143001",
+        "attention": 0.002875125015270896
+      },
+      {
+        "gene": "EEF1A1",
+        "ensembl_id": "ENSG00000156508",
+        "attention": 0.002848433659357183
+      },
+      {
+        "gene": "KCNK17",
+        "ensembl_id": "ENSG00000124780",
+        "attention": 0.0028466868929431905
+      },
+      {
+        "gene": "JSRP1",
+        "ensembl_id": "ENSG00000167476",
+        "attention": 0.00284124888930819
+      },
+      {
+        "gene": "OOEP",
+        "ensembl_id": "ENSG00000203907",
+        "attention": 0.0026711919422918334
+      },
+      {
+        "gene": "SLITRK6",
+        "ensembl_id": "ENSG00000184564",
+        "attention": 0.0026602114402604375
+      },
+      {
+        "gene": "SRPX2",
+        "ensembl_id": "ENSG00000102359",
+        "attention": 0.0026300381222325894
+      },
+      {
+        "gene": "TMPRSS3",
+        "ensembl_id": "ENSG00000160183",
+        "attention": 0.002601878244119386
+      },
+      {
+        "gene": "NTF3",
+        "ensembl_id": "ENSG00000185652",
+        "attention": 0.002589036103017861
+      },
+      {
+        "gene": "SYNPR",
+        "ensembl_id": "ENSG00000163630",
+        "attention": 0.002573665311414165
+      },
+      {
+        "gene": "RTEL1-TNFRSF6B",
+        "ensembl_id": "ENSG00000026036",
+        "attention": 0.0025733303045853972
+      },
+      {
+        "gene": "KCNA5",
+        "ensembl_id": "ENSG00000130037",
+        "attention": 0.0025276228443544824
+      },
+      {
+        "gene": "RELN",
+        "ensembl_id": "ENSG00000189056",
+        "attention": 0.002522815099487511
+      },
+      {
+        "gene": "UNC45B",
+        "ensembl_id": "ENSG00000141161",
+        "attention": 0.0025216806574131956
+      },
+      {
+        "gene": "EMX2",
+        "ensembl_id": "ENSG00000170370",
+        "attention": 0.0025066886605186896
+      },
+      {
+        "gene": "UNC13C",
+        "ensembl_id": "ENSG00000137766",
+        "attention": 0.0025021333394474104
+      },
+      {
+        "gene": "CLIC6",
+        "ensembl_id": "ENSG00000159212",
+        "attention": 0.0024943506927229465
+      },
+      {
+        "gene": "TNN",
+        "ensembl_id": "ENSG00000120332",
+        "attention": 0.002493805693864653
+      },
+      {
+        "gene": "ARHGAP24",
+        "ensembl_id": "ENSG00000138639",
+        "attention": 0.0024719842156868672
+      },
+      {
+        "gene": "MYOZ1",
+        "ensembl_id": "ENSG00000177791",
+        "attention": 0.002469799597747624
+      },
+      {
+        "gene": "MYCT1",
+        "ensembl_id": "ENSG00000120279",
+        "attention": 0.0024473201511206015
+      },
+      {
+        "gene": "ZNF366",
+        "ensembl_id": "ENSG00000178175",
+        "attention": 0.002427897799696604
+      },
+      {
+        "gene": "LINGO1",
+        "ensembl_id": "ENSG00000169783",
+        "attention": 0.0024232598648374075
+      },
+      {
+        "gene": "RIIAD1",
+        "ensembl_id": "ENSG00000178796",
+        "attention": 0.002413402854353594
+      },
+      {
+        "gene": "SLC22A7",
+        "ensembl_id": "ENSG00000137204",
+        "attention": 0.00241008293038855
+      },
+      {
+        "gene": "FBLN1",
+        "ensembl_id": "ENSG00000077942",
+        "attention": 0.002409716848180526
+      },
+      {
+        "gene": "ADAM28",
+        "ensembl_id": "ENSG00000042980",
+        "attention": 0.00236538443414247
+      },
+      {
+        "gene": "UPK3A",
+        "ensembl_id": "ENSG00000100373",
+        "attention": 0.0023462252196623013
+      },
+      {
+        "gene": "MAGOH",
+        "ensembl_id": "ENSG00000162385",
+        "attention": 0.0023341107627385537
+      },
+      {
+        "gene": "RPLP1",
+        "ensembl_id": "ENSG00000137818",
+        "attention": 0.0023035131558167953
+      },
+      {
+        "gene": "NTRK1",
+        "ensembl_id": "ENSG00000198400",
+        "attention": 0.0022849262085011496
+      },
+      {
+        "gene": "ZNF385D",
+        "ensembl_id": "ENSG00000151789",
+        "attention": 0.002238601907050576
+      },
+      {
+        "gene": "USP29",
+        "ensembl_id": "ENSG00000131864",
+        "attention": 0.0021930785675067454
+      }
+    ],
+    "ALS": [
+      {
+        "gene": "SOX18",
+        "ensembl_id": "ENSG00000203883",
+        "attention": 0.004793768656852011
+      },
+      {
+        "gene": "NRN1L",
+        "ensembl_id": "ENSG00000188038",
+        "attention": 0.004757667694979444
+      },
+      {
+        "gene": "SOSTDC1",
+        "ensembl_id": "ENSG00000171243",
+        "attention": 0.004740839866413312
+      },
+      {
+        "gene": "TMEM171",
+        "ensembl_id": "ENSG00000157111",
+        "attention": 0.004728527523444167
+      },
+      {
+        "gene": "MEDAG",
+        "ensembl_id": "ENSG00000102802",
+        "attention": 0.004681016448885202
+      },
+      {
+        "gene": "SHISA2",
+        "ensembl_id": "ENSG00000180730",
+        "attention": 0.004085800641526778
+      },
+      {
+        "gene": "SEPTIN12",
+        "ensembl_id": "ENSG00000140623",
+        "attention": 0.003920775805734313
+      },
+      {
+        "gene": "EEF1A1",
+        "ensembl_id": "ENSG00000156508",
+        "attention": 0.0038916749707866636
+      },
+      {
+        "gene": "TMPRSS15",
+        "ensembl_id": "ENSG00000154646",
+        "attention": 0.0038781719472767277
+      },
+      {
+        "gene": "RGS21",
+        "ensembl_id": "ENSG00000253148",
+        "attention": 0.003811495106977721
+      },
+      {
+        "gene": "XDH",
+        "ensembl_id": "ENSG00000158125",
+        "attention": 0.0037742889087115017
+      },
+      {
+        "gene": "MAGEE2",
+        "ensembl_id": "ENSG00000186675",
+        "attention": 0.0035326862998772413
+      },
+      {
+        "gene": "TUBA3D",
+        "ensembl_id": "ENSG00000075886",
+        "attention": 0.0034503400954417882
+      },
+      {
+        "gene": "LRIT1",
+        "ensembl_id": "ENSG00000148602",
+        "attention": 0.003350136433973124
+      },
+      {
+        "gene": "MAGOH",
+        "ensembl_id": "ENSG00000162385",
+        "attention": 0.003310137437034023
+      },
+      {
+        "gene": "VRTN",
+        "ensembl_id": "ENSG00000133980",
+        "attention": 0.003274983278242871
+      },
+      {
+        "gene": "SEPTIN14",
+        "ensembl_id": "ENSG00000154997",
+        "attention": 0.0032538790444420927
+      },
+      {
+        "gene": "SMTNL2",
+        "ensembl_id": "ENSG00000188176",
+        "attention": 0.003247304861101189
+      },
+      {
+        "gene": "NYX",
+        "ensembl_id": "ENSG00000188937",
+        "attention": 0.0032331758799652257
+      },
+      {
+        "gene": "LCT",
+        "ensembl_id": "ENSG00000115850",
+        "attention": 0.003171672612162573
+      },
+      {
+        "gene": "OOEP",
+        "ensembl_id": "ENSG00000203907",
+        "attention": 0.0031311768258962293
+      },
+      {
+        "gene": "PTH2",
+        "ensembl_id": "ENSG00000142538",
+        "attention": 0.0031141010336936093
+      },
+      {
+        "gene": "TEKT1",
+        "ensembl_id": "ENSG00000167858",
+        "attention": 0.003060375129280146
+      },
+      {
+        "gene": "KCNH6",
+        "ensembl_id": "ENSG00000173826",
+        "attention": 0.0030388547035319537
+      },
+      {
+        "gene": "ZNF366",
+        "ensembl_id": "ENSG00000178175",
+        "attention": 0.0030196617673417287
+      },
+      {
+        "gene": "MYPN",
+        "ensembl_id": "ENSG00000138347",
+        "attention": 0.0030145548024358084
+      },
+      {
+        "gene": "DHFR",
+        "ensembl_id": "ENSG00000228716",
+        "attention": 0.0029827431335434085
+      },
+      {
+        "gene": "MYCT1",
+        "ensembl_id": "ENSG00000120279",
+        "attention": 0.0028997048975725193
+      },
+      {
+        "gene": "SLC26A3",
+        "ensembl_id": "ENSG00000091138",
+        "attention": 0.002858494622549707
+      },
+      {
+        "gene": "KCNK17",
+        "ensembl_id": "ENSG00000124780",
+        "attention": 0.0028466868929431905
+      },
+      {
+        "gene": "NAALADL1",
+        "ensembl_id": "ENSG00000168060",
+        "attention": 0.0028078140669756317
+      },
+      {
+        "gene": "SYCE3",
+        "ensembl_id": "ENSG00000217442",
+        "attention": 0.0028052745709339012
+      },
+      {
+        "gene": "NTF3",
+        "ensembl_id": "ENSG00000185652",
+        "attention": 0.0027791802627582323
+      },
+      {
+        "gene": "TMEM61",
+        "ensembl_id": "ENSG00000143001",
+        "attention": 0.0027756558878796306
+      },
+      {
+        "gene": "SRPX2",
+        "ensembl_id": "ENSG00000102359",
+        "attention": 0.0027659829862861206
+      },
+      {
+        "gene": "JSRP1",
+        "ensembl_id": "ENSG00000167476",
+        "attention": 0.002736021090337696
+      },
+      {
+        "gene": "EMX2",
+        "ensembl_id": "ENSG00000170370",
+        "attention": 0.0027225571024852495
+      },
+      {
+        "gene": "UPK3A",
+        "ensembl_id": "ENSG00000100373",
+        "attention": 0.0027082587217187714
+      },
+      {
+        "gene": "ADAM28",
+        "ensembl_id": "ENSG00000042980",
+        "attention": 0.0027060707199982265
+      },
+      {
+        "gene": "POSTN",
+        "ensembl_id": "ENSG00000133110",
+        "attention": 0.002705623342990293
+      },
+      {
+        "gene": "TNNT1",
+        "ensembl_id": "ENSG00000105048",
+        "attention": 0.0026994709856808185
+      },
+      {
+        "gene": "KCNA5",
+        "ensembl_id": "ENSG00000130037",
+        "attention": 0.002659891910298029
+      },
+      {
+        "gene": "NEU4",
+        "ensembl_id": "ENSG00000204099",
+        "attention": 0.0026514232033930185
+      },
+      {
+        "gene": "PTH2R",
+        "ensembl_id": "ENSG00000144407",
+        "attention": 0.002647130206435364
+      },
+      {
+        "gene": "TMPRSS3",
+        "ensembl_id": "ENSG00000160183",
+        "attention": 0.002601878244119386
+      },
+      {
+        "gene": "RACK1",
+        "ensembl_id": "ENSG00000204628",
+        "attention": 0.002579659567311195
+      },
+      {
+        "gene": "IL18R1",
+        "ensembl_id": "ENSG00000115604",
+        "attention": 0.0025789214331390603
+      },
+      {
+        "gene": "RTEL1-TNFRSF6B",
+        "ensembl_id": "ENSG00000026036",
+        "attention": 0.0025733303045853972
+      },
+      {
+        "gene": "SLC22A7",
+        "ensembl_id": "ENSG00000137204",
+        "attention": 0.0025603205930175526
+      },
+      {
+        "gene": "TUBA3C",
+        "ensembl_id": "ENSG00000198033",
+        "attention": 0.0025455832285594874
+      }
+    ],
+    "shared_all": [
+      "DHFR",
+      "EEF1A1",
+      "EMX2"
+    ]
+  }
+}

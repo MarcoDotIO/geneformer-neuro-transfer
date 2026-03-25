@@ -1,0 +1,28 @@
+# Data files (too large for git)
+data/*.h5ad
+data/tokenized/*.pkl
+
+# Model weights (hosted on Hugging Face)
+models/
+*.pt
+*.bin
+*.safetensors
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.eggs/
+*.egg
+
+# Env
+venv/
+*.venv/
+geneformer_env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/

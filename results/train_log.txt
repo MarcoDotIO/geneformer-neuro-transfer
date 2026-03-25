@@ -1,0 +1,478 @@
+Device: cuda
+Loading tokenized datasets...
+  ad_brain: 20000 cells, labels: [10000 10000]
+  pd_brain: 20000 cells, labels: [10000 10000]
+  als_brain: 20000 cells, labels: [10000 10000]
+
+============================================================
+PHASE 1: Fine-tuning Geneformer on Alzheimer's Disease
+============================================================
+AD splits - Train: 14000, Val: 3000, Test: 3000
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 16015.00it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+Model parameters: 104.4M
+  Epoch 1, Batch 0/438, Loss: 0.6924
+  Epoch 1, Batch 50/438, Loss: 0.6434
+  Epoch 1, Batch 100/438, Loss: 0.3852
+  Epoch 1, Batch 150/438, Loss: 0.1015
+  Epoch 1, Batch 200/438, Loss: 0.1360
+  Epoch 1, Batch 250/438, Loss: 0.0134
+  Epoch 1, Batch 300/438, Loss: 0.1626
+  Epoch 1, Batch 350/438, Loss: 0.2034
+  Epoch 1, Batch 400/438, Loss: 0.1363
+Epoch 1: Train F1=0.9174, Val F1=0.9846, Val Acc=0.9843, Val AUC=0.9893
+  Epoch 2, Batch 0/438, Loss: 0.0045
+  Epoch 2, Batch 50/438, Loss: 0.4334
+  Epoch 2, Batch 100/438, Loss: 0.0029
+  Epoch 2, Batch 150/438, Loss: 0.0042
+  Epoch 2, Batch 200/438, Loss: 0.0135
+  Epoch 2, Batch 250/438, Loss: 0.0044
+  Epoch 2, Batch 300/438, Loss: 0.0016
+  Epoch 2, Batch 350/438, Loss: 0.0095
+  Epoch 2, Batch 400/438, Loss: 0.0063
+Epoch 2: Train F1=0.9858, Val F1=0.9868, Val Acc=0.9867, Val AUC=0.9918
+  Epoch 3, Batch 0/438, Loss: 0.0319
+  Epoch 3, Batch 50/438, Loss: 0.1612
+  Epoch 3, Batch 100/438, Loss: 0.0031
+  Epoch 3, Batch 150/438, Loss: 0.0043
+  Epoch 3, Batch 200/438, Loss: 0.0020
+  Epoch 3, Batch 250/438, Loss: 0.0022
+  Epoch 3, Batch 300/438, Loss: 0.0025
+  Epoch 3, Batch 350/438, Loss: 0.0015
+  Epoch 3, Batch 400/438, Loss: 0.0014
+Epoch 3: Train F1=0.9904, Val F1=0.9849, Val Acc=0.9847, Val AUC=0.9943
+  Epoch 4, Batch 0/438, Loss: 0.1497
+  Epoch 4, Batch 50/438, Loss: 0.0020
+  Epoch 4, Batch 100/438, Loss: 0.0009
+  Epoch 4, Batch 150/438, Loss: 0.0006
+  Epoch 4, Batch 200/438, Loss: 0.0008
+  Epoch 4, Batch 250/438, Loss: 0.0009
+  Epoch 4, Batch 300/438, Loss: 0.0118
+  Epoch 4, Batch 350/438, Loss: 0.0023
+  Epoch 4, Batch 400/438, Loss: 0.0012
+Epoch 4: Train F1=0.9937, Val F1=0.9888, Val Acc=0.9887, Val AUC=0.9950
+  Epoch 5, Batch 0/438, Loss: 0.0011
+  Epoch 5, Batch 50/438, Loss: 0.0008
+  Epoch 5, Batch 100/438, Loss: 0.0008
+  Epoch 5, Batch 150/438, Loss: 0.0005
+  Epoch 5, Batch 200/438, Loss: 0.0009
+  Epoch 5, Batch 250/438, Loss: 0.1998
+  Epoch 5, Batch 300/438, Loss: 0.1316
+  Epoch 5, Batch 350/438, Loss: 0.0006
+  Epoch 5, Batch 400/438, Loss: 0.0007
+Epoch 5: Train F1=0.9960, Val F1=0.9891, Val Acc=0.9890, Val AUC=0.9953
+Training time: 6206s
+
+AD Test Results: {'accuracy': 0.9893333333333333, 'f1': 0.9894249834765367, 'precision': 0.9809960681520314, 'recall': 0.998, 'auroc': 0.995683777777778}
+Saved fine-tuned model to /data/marnett5/neuro_transfer/results/geneformer_ad_finetuned.pt
+
+============================================================
+PHASE 2: Transfer Learning to PD
+============================================================
+
+--- Zero-shot transfer to PD ---
+Zero-shot: {'accuracy': 0.49916666666666665, 'f1': 0.03593198588386269, 'precision': 0.47863247863247865, 'recall': 0.018666666666666668, 'auroc': 0.4385692222222222}
+
+--- few_shot_10pct transfer to PD ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11568.95it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/35, Loss: 4.7360
+Epoch 1: Train F1=0.3314, Val F1=0.8356, Val Acc=0.8286, Val AUC=0.9230
+  Epoch 2, Batch 0/35, Loss: 0.9094
+Epoch 2: Train F1=0.8684, Val F1=0.8986, Val Acc=0.8929, Val AUC=0.9552
+  Epoch 3, Batch 0/35, Loss: 0.4335
+Epoch 3: Train F1=0.9107, Val F1=0.8980, Val Acc=0.8929, Val AUC=0.9663
+few_shot_10pct: {'accuracy': 0.9051666666666667, 'f1': 0.9119876256767208, 'precision': 0.8507936507936508, 'recall': 0.9826666666666667, 'auroc': 0.9516632222222221}
+
+--- few_shot_25pct transfer to PD ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 13837.26it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/88, Loss: 5.7049
+  Epoch 1, Batch 50/88, Loss: 0.3286
+Epoch 1: Train F1=0.7499, Val F1=0.9160, Val Acc=0.9114, Val AUC=0.9490
+  Epoch 2, Batch 0/88, Loss: 0.1135
+  Epoch 2, Batch 50/88, Loss: 0.0675
+Epoch 2: Train F1=0.9365, Val F1=0.9484, Val Acc=0.9471, Val AUC=0.9787
+  Epoch 3, Batch 0/88, Loss: 0.0456
+  Epoch 3, Batch 50/88, Loss: 0.0453
+Epoch 3: Train F1=0.9512, Val F1=0.9510, Val Acc=0.9500, Val AUC=0.9804
+few_shot_25pct: {'accuracy': 0.9458333333333333, 'f1': 0.9473684210526315, 'precision': 0.9212598425196851, 'recall': 0.975, 'auroc': 0.9812511666666666}
+
+--- few_shot_50pct transfer to PD ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 14130.21it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/175, Loss: 4.7479
+  Epoch 1, Batch 50/175, Loss: 0.5003
+  Epoch 1, Batch 100/175, Loss: 0.2510
+  Epoch 1, Batch 150/175, Loss: 0.2107
+Epoch 1: Train F1=0.8347, Val F1=0.9465, Val Acc=0.9443, Val AUC=0.9810
+  Epoch 2, Batch 0/175, Loss: 0.1615
+  Epoch 2, Batch 50/175, Loss: 0.1330
+  Epoch 2, Batch 100/175, Loss: 0.2048
+  Epoch 2, Batch 150/175, Loss: 0.1673
+Epoch 2: Train F1=0.9514, Val F1=0.9558, Val Acc=0.9543, Val AUC=0.9848
+  Epoch 3, Batch 0/175, Loss: 0.0891
+  Epoch 3, Batch 50/175, Loss: 0.0248
+  Epoch 3, Batch 100/175, Loss: 0.1016
+  Epoch 3, Batch 150/175, Loss: 0.1689
+Epoch 3: Train F1=0.9626, Val F1=0.9578, Val Acc=0.9564, Val AUC=0.9860
+few_shot_50pct: {'accuracy': 0.9571666666666667, 'f1': 0.9582859925336796, 'precision': 0.9338816830117052, 'recall': 0.984, 'auroc': 0.9875534444444444}
+
+--- few_shot_100pct transfer to PD ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11660.38it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/350, Loss: 3.7881
+  Epoch 1, Batch 50/350, Loss: 0.7007
+  Epoch 1, Batch 100/350, Loss: 0.3392
+  Epoch 1, Batch 150/350, Loss: 0.2186
+  Epoch 1, Batch 200/350, Loss: 0.3265
+  Epoch 1, Batch 250/350, Loss: 0.2712
+  Epoch 1, Batch 300/350, Loss: 0.2120
+Epoch 1: Train F1=0.9034, Val F1=0.9509, Val Acc=0.9489, Val AUC=0.9857
+  Epoch 2, Batch 0/350, Loss: 0.1471
+  Epoch 2, Batch 50/350, Loss: 0.1295
+  Epoch 2, Batch 100/350, Loss: 0.0911
+  Epoch 2, Batch 150/350, Loss: 0.1463
+  Epoch 2, Batch 200/350, Loss: 0.0086
+  Epoch 2, Batch 250/350, Loss: 0.1844
+  Epoch 2, Batch 300/350, Loss: 0.0227
+Epoch 2: Train F1=0.9698, Val F1=0.9658, Val Acc=0.9650, Val AUC=0.9903
+  Epoch 3, Batch 0/350, Loss: 0.1650
+  Epoch 3, Batch 50/350, Loss: 0.1128
+  Epoch 3, Batch 100/350, Loss: 0.0095
+  Epoch 3, Batch 150/350, Loss: 0.0340
+  Epoch 3, Batch 200/350, Loss: 0.0250
+  Epoch 3, Batch 250/350, Loss: 0.1333
+  Epoch 3, Batch 300/350, Loss: 0.1482
+Epoch 3: Train F1=0.9771, Val F1=0.9659, Val Acc=0.9654, Val AUC=0.9906
+few_shot_100pct: {'accuracy': 0.97, 'f1': 0.9703264094955489, 'precision': 0.9598825831702544, 'recall': 0.981, 'auroc': 0.992181}
+
+--- Train from scratch on PD (no transfer) ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11891.46it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/372, Loss: 0.6765
+  Epoch 1, Batch 50/372, Loss: 0.6630
+  Epoch 1, Batch 100/372, Loss: 0.4000
+  Epoch 1, Batch 150/372, Loss: 0.2975
+  Epoch 1, Batch 200/372, Loss: 0.2303
+  Epoch 1, Batch 250/372, Loss: 0.1197
+  Epoch 1, Batch 300/372, Loss: 0.1003
+  Epoch 1, Batch 350/372, Loss: 0.0185
+Epoch 1: Train F1=0.8774, Val F1=0.9611, Val Acc=0.9605, Val AUC=0.9893
+  Epoch 2, Batch 0/372, Loss: 0.0175
+  Epoch 2, Batch 50/372, Loss: 0.3252
+  Epoch 2, Batch 100/372, Loss: 0.7371
+  Epoch 2, Batch 150/372, Loss: 0.0561
+  Epoch 2, Batch 200/372, Loss: 0.1330
+  Epoch 2, Batch 250/372, Loss: 0.1463
+  Epoch 2, Batch 300/372, Loss: 0.2412
+  Epoch 2, Batch 350/372, Loss: 0.1121
+Epoch 2: Train F1=0.9645, Val F1=0.9740, Val Acc=0.9738, Val AUC=0.9903
+  Epoch 3, Batch 0/372, Loss: 0.0160
+  Epoch 3, Batch 50/372, Loss: 0.1661
+  Epoch 3, Batch 100/372, Loss: 0.1186
+  Epoch 3, Batch 150/372, Loss: 0.1339
+  Epoch 3, Batch 200/372, Loss: 0.0151
+  Epoch 3, Batch 250/372, Loss: 0.1753
+  Epoch 3, Batch 300/372, Loss: 0.0115
+  Epoch 3, Batch 350/372, Loss: 0.2423
+Epoch 3: Train F1=0.9754, Val F1=0.9765, Val Acc=0.9762, Val AUC=0.9931
+  Epoch 4, Batch 0/372, Loss: 0.0718
+  Epoch 4, Batch 50/372, Loss: 0.0024
+  Epoch 4, Batch 100/372, Loss: 0.0111
+  Epoch 4, Batch 150/372, Loss: 0.0143
+  Epoch 4, Batch 200/372, Loss: 0.0024
+  Epoch 4, Batch 250/372, Loss: 0.0023
+  Epoch 4, Batch 300/372, Loss: 0.0750
+  Epoch 4, Batch 350/372, Loss: 0.1113
+Epoch 4: Train F1=0.9817, Val F1=0.9765, Val Acc=0.9762, Val AUC=0.9927
+  Epoch 5, Batch 0/372, Loss: 0.0039
+  Epoch 5, Batch 50/372, Loss: 0.1556
+  Epoch 5, Batch 100/372, Loss: 0.0014
+  Epoch 5, Batch 150/372, Loss: 0.0139
+  Epoch 5, Batch 200/372, Loss: 0.0016
+  Epoch 5, Batch 250/372, Loss: 0.1764
+  Epoch 5, Batch 300/372, Loss: 0.0036
+  Epoch 5, Batch 350/372, Loss: 0.0043
+Epoch 5: Train F1=0.9861, Val F1=0.9770, Val Acc=0.9767, Val AUC=0.9938
+From scratch: {'accuracy': 0.976, 'f1': 0.976198347107438, 'precision': 0.9681967213114754, 'recall': 0.9843333333333333, 'auroc': 0.9936897777777778}
+
+============================================================
+PHASE 2: Transfer Learning to ALS
+============================================================
+
+--- Zero-shot transfer to ALS ---
+Zero-shot: {'accuracy': 0.49383333333333335, 'f1': 0.015559157212317666, 'precision': 0.2823529411764706, 'recall': 0.008, 'auroc': 0.4158045}
+
+--- few_shot_10pct transfer to ALS ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 12236.26it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/35, Loss: 4.7956
+Epoch 1: Train F1=0.1429, Val F1=0.6036, Val Acc=0.6857, Val AUC=0.8032
+  Epoch 2, Batch 0/35, Loss: 2.5391
+Epoch 2: Train F1=0.7861, Val F1=0.8333, Val Acc=0.8286, Val AUC=0.8875
+  Epoch 3, Batch 0/35, Loss: 0.5863
+Epoch 3: Train F1=0.8722, Val F1=0.8485, Val Acc=0.8393, Val AUC=0.9290
+few_shot_10pct: {'accuracy': 0.8785, 'f1': 0.887273851863306, 'precision': 0.8275165849437555, 'recall': 0.9563333333333334, 'auroc': 0.9326682222222222}
+
+--- few_shot_25pct transfer to ALS ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11981.29it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/88, Loss: 5.4368
+  Epoch 1, Batch 50/88, Loss: 0.6849
+Epoch 1: Train F1=0.6611, Val F1=0.8539, Val Acc=0.8543, Val AUC=0.9133
+  Epoch 2, Batch 0/88, Loss: 0.3051
+  Epoch 2, Batch 50/88, Loss: 0.1406
+Epoch 2: Train F1=0.9050, Val F1=0.8945, Val Acc=0.8929, Val AUC=0.9709
+  Epoch 3, Batch 0/88, Loss: 0.1095
+  Epoch 3, Batch 50/88, Loss: 0.1891
+Epoch 3: Train F1=0.9385, Val F1=0.9021, Val Acc=0.9014, Val AUC=0.9746
+few_shot_25pct: {'accuracy': 0.9116666666666666, 'f1': 0.9140168721609344, 'precision': 0.8903286978508217, 'recall': 0.939, 'auroc': 0.9792375555555556}
+
+--- few_shot_50pct transfer to ALS ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11897.28it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/175, Loss: 7.7406
+  Epoch 1, Batch 50/175, Loss: 0.6190
+  Epoch 1, Batch 100/175, Loss: 0.2628
+  Epoch 1, Batch 150/175, Loss: 0.2998
+Epoch 1: Train F1=0.7768, Val F1=0.9138, Val Acc=0.9121, Val AUC=0.9770
+  Epoch 2, Batch 0/175, Loss: 0.1912
+  Epoch 2, Batch 50/175, Loss: 0.3343
+  Epoch 2, Batch 100/175, Loss: 0.0634
+  Epoch 2, Batch 150/175, Loss: 0.2152
+Epoch 2: Train F1=0.9352, Val F1=0.9258, Val Acc=0.9214, Val AUC=0.9897
+  Epoch 3, Batch 0/175, Loss: 0.1750
+  Epoch 3, Batch 50/175, Loss: 0.0717
+  Epoch 3, Batch 100/175, Loss: 0.0451
+  Epoch 3, Batch 150/175, Loss: 0.2790
+Epoch 3: Train F1=0.9579, Val F1=0.9477, Val Acc=0.9464, Val AUC=0.9907
+few_shot_50pct: {'accuracy': 0.9408333333333333, 'f1': 0.942116419370618, 'precision': 0.9221193744015321, 'recall': 0.963, 'auroc': 0.9896473888888889}
+
+--- few_shot_100pct transfer to ALS ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11618.08it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/350, Loss: 6.4091
+  Epoch 1, Batch 50/350, Loss: 1.2967
+  Epoch 1, Batch 100/350, Loss: 0.3600
+  Epoch 1, Batch 150/350, Loss: 0.2788
+  Epoch 1, Batch 200/350, Loss: 0.1569
+  Epoch 1, Batch 250/350, Loss: 0.2609
+  Epoch 1, Batch 300/350, Loss: 0.2421
+Epoch 1: Train F1=0.8613, Val F1=0.9463, Val Acc=0.9450, Val AUC=0.9905
+  Epoch 2, Batch 0/350, Loss: 0.1280
+  Epoch 2, Batch 50/350, Loss: 0.0627
+  Epoch 2, Batch 100/350, Loss: 0.2551
+  Epoch 2, Batch 150/350, Loss: 0.1185
+  Epoch 2, Batch 200/350, Loss: 0.0096
+  Epoch 2, Batch 250/350, Loss: 0.0543
+  Epoch 2, Batch 300/350, Loss: 0.0330
+Epoch 2: Train F1=0.9598, Val F1=0.9548, Val Acc=0.9546, Val AUC=0.9933
+  Epoch 3, Batch 0/350, Loss: 0.0604
+  Epoch 3, Batch 50/350, Loss: 0.0119
+  Epoch 3, Batch 100/350, Loss: 0.0309
+  Epoch 3, Batch 150/350, Loss: 0.0516
+  Epoch 3, Batch 200/350, Loss: 0.0326
+  Epoch 3, Batch 250/350, Loss: 0.0832
+  Epoch 3, Batch 300/350, Loss: 0.2189
+Epoch 3: Train F1=0.9731, Val F1=0.9592, Val Acc=0.9582, Val AUC=0.9939
+few_shot_100pct: {'accuracy': 0.9618333333333333, 'f1': 0.9624528611247746, 'precision': 0.947079703130042, 'recall': 0.9783333333333334, 'auroc': 0.9946748888888889}
+
+--- Train from scratch on ALS (no transfer) ---
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11704.81it/s]
+[1mBertModel LOAD REPORT[0m from: /data/marnett5/neuro_transfer/models/geneformer_pretrained/Geneformer-V2-104M
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+  Epoch 1, Batch 0/372, Loss: 0.7123
+  Epoch 1, Batch 50/372, Loss: 0.6731
+  Epoch 1, Batch 100/372, Loss: 0.5428
+  Epoch 1, Batch 150/372, Loss: 0.3624
+  Epoch 1, Batch 200/372, Loss: 0.2148
+  Epoch 1, Batch 250/372, Loss: 0.2856
+  Epoch 1, Batch 300/372, Loss: 0.0680
+  Epoch 1, Batch 350/372, Loss: 0.2092
+Epoch 1: Train F1=0.8371, Val F1=0.9185, Val Acc=0.9133, Val AUC=0.9863
+  Epoch 2, Batch 0/372, Loss: 0.1242
+  Epoch 2, Batch 50/372, Loss: 0.4516
+  Epoch 2, Batch 100/372, Loss: 0.0668
+  Epoch 2, Batch 150/372, Loss: 0.1373
+  Epoch 2, Batch 200/372, Loss: 0.1635
+  Epoch 2, Batch 250/372, Loss: 0.0247
+  Epoch 2, Batch 300/372, Loss: 0.2173
+  Epoch 2, Batch 350/372, Loss: 0.1533
+Epoch 2: Train F1=0.9395, Val F1=0.9685, Val Acc=0.9681, Val AUC=0.9953
+  Epoch 3, Batch 0/372, Loss: 0.0339
+  Epoch 3, Batch 50/372, Loss: 0.0124
+  Epoch 3, Batch 100/372, Loss: 0.0322
+  Epoch 3, Batch 150/372, Loss: 0.0974
+  Epoch 3, Batch 200/372, Loss: 0.2067
+  Epoch 3, Batch 250/372, Loss: 0.1034
+  Epoch 3, Batch 300/372, Loss: 0.0383
+  Epoch 3, Batch 350/372, Loss: 0.0212
+Epoch 3: Train F1=0.9683, Val F1=0.9703, Val Acc=0.9700, Val AUC=0.9956
+  Epoch 4, Batch 0/372, Loss: 0.0025
+  Epoch 4, Batch 50/372, Loss: 0.0204
+  Epoch 4, Batch 100/372, Loss: 0.0691
+  Epoch 4, Batch 150/372, Loss: 0.3034
+  Epoch 4, Batch 200/372, Loss: 0.0039
+  Epoch 4, Batch 250/372, Loss: 0.0037
+  Epoch 4, Batch 300/372, Loss: 0.0228
+  Epoch 4, Batch 350/372, Loss: 0.0009
+Epoch 4: Train F1=0.9828, Val F1=0.9754, Val Acc=0.9752, Val AUC=0.9959
+  Epoch 5, Batch 0/372, Loss: 0.0093
+  Epoch 5, Batch 50/372, Loss: 0.0026
+  Epoch 5, Batch 100/372, Loss: 0.0042
+  Epoch 5, Batch 150/372, Loss: 0.0013
+  Epoch 5, Batch 200/372, Loss: 0.1660
+  Epoch 5, Batch 250/372, Loss: 0.0009
+  Epoch 5, Batch 300/372, Loss: 0.1996
+  Epoch 5, Batch 350/372, Loss: 0.0007
+Epoch 5: Train F1=0.9899, Val F1=0.9741, Val Acc=0.9738, Val AUC=0.9959
+From scratch: {'accuracy': 0.9711666666666666, 'f1': 0.9713243825625725, 'precision': 0.9660402242004615, 'recall': 0.9766666666666667, 'auroc': 0.9962985555555556}
+
+============================================================
+PHASE 3: Baseline Classifiers (on Geneformer embeddings)
+============================================================
+
+--- Baselines for AD ---
+  Extracting embeddings...
+  logistic_regression: F1=0.9889, AUC=0.9939
+  xgboost: F1=0.9889, AUC=0.9956
+  mlp: F1=0.9892, AUC=0.9938
+
+--- Baselines for PD ---
+  Extracting embeddings...
+  logistic_regression: F1=0.9605, AUC=0.9877
+  xgboost: F1=0.9483, AUC=0.9864
+  mlp: F1=0.9566, AUC=0.9878
+
+--- Baselines for ALS ---
+  Extracting embeddings...
+  logistic_regression: F1=0.9309, AUC=0.9806
+  xgboost: F1=0.9268, AUC=0.9798
+  mlp: F1=0.9390, AUC=0.9841
+
+============================================================
+PHASE 4: Attention Analysis
+============================================================
+
+Analyzing attention for AD...
+`sdpa` attention does not support `output_attentions=True`. Please set your attention to `eager` if you want any of these features.
+Traceback (most recent call last):
+  File "/data/marnett5/neuro_transfer/scripts/03_train_and_evaluate.py", line 633, in <module>
+    main()
+  File "/data/marnett5/neuro_transfer/scripts/03_train_and_evaluate.py", line 571, in main
+    top_genes = analyze_attention(model, datasets[target_name], token_dict, n_samples=500)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/marnett5/neuro_transfer/scripts/03_train_and_evaluate.py", line 288, in analyze_attention
+    last_layer_attn = outputs["attentions"][-1]
+                      ~~~~~~~~~~~~~~~~~~~~~^^^^
+IndexError: tuple index out of range
